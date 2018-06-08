@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.1.1",
     "firebase": "^5.0.4",
+    "onchange": "^4.0.0",
     "pokeapi-js-wrapper": "^1.1.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -19,8 +20,8 @@
     "start": "parallelshell \"npm run sass:watch\" \"react-scripts start\" ",
     "build": "npm sass:build && react-scripts build",
     "eject": "react-scripts eject",
-    "sass:watch": "node-sass -w src/styles/scss -o src/styles/css",
-    "sass:build": "node-sass src/styles/scss -o src/styles/css --source-map true",
+    "sass:watch": "node-sass --output-style expanded --watch --source-map true -o ./src/styles/css/ ./src/styles/scss/",
+    "sass:build": "node-sass --output-style expanded --source-map true -o ./src/styles/css/ ./src/styles/scss/",
     "test": "react-scripts test --env=jsdom"
   }
 }

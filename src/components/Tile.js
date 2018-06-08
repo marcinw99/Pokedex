@@ -3,13 +3,20 @@ import React, { Component } from "react";
 class Tile extends Component {
   render() {
     const name = this.props.pokemon.name;
-    const height = this.props.pokemon.height;
-    const exp = this.props.pokemon.base_experience;
+    const background = this.props.pokemon.sprites.front_default;
+    const photoCSS = {
+      background: `url(${background})`,
+      backgroundSize: "contain"
+    };
     return (
-      <div className="tile">
-        <p>Name: {name}</p>
-        <p>Height: {height}</p>
-        <p>Base experience: {exp}</p>
+      <div
+        className="tile"
+        style={photoCSS}
+        onClick={() => {
+          this.props.redirectToPokemonInfo(this);
+        }}
+      >
+        <p>{name}</p>
       </div>
     );
   }

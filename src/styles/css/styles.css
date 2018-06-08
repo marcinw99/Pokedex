@@ -1,2 +1,17 @@
 body {
-  background: yellow; }
+  background: yellow;
+}
+
+.tile {
+  display: inline-block;
+  border: 1px solid black;
+  background-repeat: no-repeat !important;
+  padding: 10px;
+  margin: 10px;
+}
+
+.tile p {
+  margin: 100px 0 0 0;
+}
+
+/*# sourceMappingURL=styles.css.map */
