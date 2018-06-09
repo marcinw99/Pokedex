@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import Tile from "./Tile";
+import SearchOnePokemonForm from "./SearchOnePokemonForm";
+import SearchMultiplePokemonsForm from "./SearchMultiplePokemonsForm";
 
 class App extends Component {
   state = {
     pokemons: [],
     response: "noRequests",
     searchScope: {
-      limit: 8,
-      offset: 0
+      limit: 10,
+      offset: 100
     }
   };
-  formInput = React.createRef();
-  keepSearches = React.createRef();
 
   componentDidMount() {
     const Pokedex = require("pokeapi-js-wrapper");
@@ -24,17 +24,6 @@ class App extends Component {
     };
     this.P = new Pokedex.Pokedex(options);
   }
-
-  searchForItem = event => {
-    // Stop the form from submitting
-    event.preventDefault();
-    // Get value from input
-    const pokemonName = this.formInput.current.value;
-    // Check if should keep previous searches
-    const keepSearches = this.keepSearches.current.checked;
-    // Fetch Pokemon into state
-    this.fetchItemIntoState(pokemonName, keepSearches);
-  };
 
   fetchItemIntoState = (name, keepSearches) => {
     this.P.getPokemonByName(name).then(
@@ -65,7 +54,9 @@ class App extends Component {
     this.props.history.push(`/pokemon/${pokemon}`);
   };
 
-  listPokemonsFromScope = () => {
+  listPokemonsFromScope = event => {
+    // Prevent default
+    event.preventDefault();
     // remove previous pokemons
     this.setState({
       pokemons: []
@@ -105,26 +96,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <form className="search-form" onSubmit={this.searchForItem}>
-          <input
-            type="text"
-            ref={this.formInput}
-            required
-            placeholder="Enter name"
-            defaultValue="bulbasaur"
-          />
-          <button type="submit">Find it!</button>
-          <label>
-            Keep previous searches
-            <input
-              type="checkbox"
-              ref={this.keepSearches}
-              name="keepSearches"
-            />
-          </label>
-        </form>
-        <button onClick={this.listPokemonsFromScope}>View all pokemons</button>
+      <div className="App container my-4 p-3">
+        <SearchOnePokemonForm fetchItemIntoState={this.fetchItemIntoState} />
+        <SearchMultiplePokemonsForm
+          listPokemonsFromScope={this.listPokemonsFromScope}
+        />
         <div className="pokemons-list">
           {Object.keys(this.state.pokemons).map(key => (
             <Tile

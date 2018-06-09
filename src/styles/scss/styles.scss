@@ -1,5 +1,12 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
 body {
+  background: url("../images/background.jpg");
+}
+
+.App {
   background: yellow;
+  min-height: 90vh;
 }
 
 .tile {
