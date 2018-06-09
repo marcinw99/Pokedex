@@ -49,7 +49,6 @@ class App extends Component {
     if (waitingForDataAbout.indexOf(name) === -1) {
       waitingForDataAbout.push(name);
     }
-    console.log(waitingForDataAbout);
     this.setState({
       waitingForDataAbout
     });
@@ -110,7 +109,10 @@ class App extends Component {
             Waiting for data about:
           </p>
           {Object.keys(this.state.waitingForDataAbout).map(key => (
-            <div className="waiting-for-item green-rounded-box d-inline-block m-1">
+            <div
+              key={key}
+              className="waiting-for-item green-rounded-box d-inline-block m-1"
+            >
               {this.state.waitingForDataAbout[key]}
             </div>
           ))}

@@ -84,7 +84,7 @@ class SearchMultiplePokemonsForm extends Component {
             className="mx-2"
             name="rangeValue"
             ref={this.amountInput}
-            min="0"
+            min="1"
             max="12"
             defaultValue="1"
             onChange={this.handleChange}

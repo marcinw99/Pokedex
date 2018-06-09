@@ -8536,7 +8536,7 @@ body {
 
 .App .tile {
   border-radius: 15px;
-  border: 2px solid #ffab00;
+  border: 2px solid #64dd17;
 }
 
 .App .tile > div {
@@ -8566,6 +8566,16 @@ footer {
   background: #fff8e1;
   color: #ffab00;
   font-size: 1.2rem;
+}
+
+.request-info {
+  font-size: 2rem;
+  color: #ffab00;
+  background: #fff8e1;
+}
+
+.pokemon {
+  background: linear-gradient(30deg, #ffab00, #ffcd05);
 }
 
 /*# sourceMappingURL=styles.css.map */

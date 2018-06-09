@@ -77,7 +77,7 @@ body {
 
   .tile {
     border-radius: 15px;
-    border: 2px solid $orange;
+    border: 2px solid $green;
     > div {
       min-width: 120px;
       min-height: 75px;
@@ -105,4 +105,16 @@ footer {
   background: $bright;
   color: $orange;
   font-size: 1.2rem;
+}
+
+.request-info {
+  font-size: 2rem;
+  color: $orange;
+  background: $bright;
+}
+
+// styling pokemon statistics
+
+.pokemon {
+  background: linear-gradient(30deg, #ffab00, #ffcd05);
 }
