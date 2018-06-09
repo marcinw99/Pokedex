@@ -6,7 +6,8 @@ import SearchMultiplePokemonsForm from "./SearchMultiplePokemonsForm";
 class App extends Component {
   state = {
     listedPokemons: [],
-    allPokemons: []
+    allPokemons: [],
+    waitingForDataAbout: []
   };
 
   componentDidMount() {
@@ -35,6 +36,23 @@ class App extends Component {
   }
 
   fetchItemIntoState = (name, keepSearches) => {
+    // Don't make more then 12 requests at one time
+    // If there is already a request for that item don't send more
+    if (
+      this.state.waitingForDataAbout.length >= 12 ||
+      this.state.waitingForDataAbout.indexOf(name) !== -1
+    ) {
+      return false;
+    }
+    // Update info about current ajax requests for pokemons
+    const waitingForDataAbout = this.state.waitingForDataAbout;
+    if (waitingForDataAbout.indexOf(name) === -1) {
+      waitingForDataAbout.push(name);
+    }
+    console.log(waitingForDataAbout);
+    this.setState({
+      waitingForDataAbout
+    });
     this.P.getPokemonByName(name).then(
       result => {
         if (keepSearches === false) {
@@ -51,6 +69,13 @@ class App extends Component {
             listedPokemons: pokemons
           });
         }
+        // Update info about current ajax requests for pokemons
+        const waitingForDataAbout = this.state.waitingForDataAbout;
+        const indexOfItem = waitingForDataAbout.indexOf(name);
+        waitingForDataAbout.splice(indexOfItem, 1);
+        this.setState({
+          waitingForDataAbout
+        });
       },
       error => {
         return null;
@@ -80,6 +105,14 @@ class App extends Component {
           fetchItemIntoState={this.fetchItemIntoState}
           allPokemons={this.state.allPokemons}
         />
+        <div className="waiting-for-list">
+          <p className="d-inline-block m-1">Waiting for data about:</p>
+          {Object.keys(this.state.waitingForDataAbout).map(key => (
+            <div className="waiting-for-item d-inline-block m-1">
+              {this.state.waitingForDataAbout[key]}
+            </div>
+          ))}
+        </div>
         <div className="pokemons-list">
           {Object.keys(this.state.listedPokemons).map(key => (
             <Tile

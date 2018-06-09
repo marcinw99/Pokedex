@@ -68,6 +68,7 @@ class SearchMultiplePokemonsForm extends Component {
             min="0"
             max={this.state.maxRangeValue}
             step="1"
+            defaultValue="0"
             onChange={this.handleChange}
           />
           <input
