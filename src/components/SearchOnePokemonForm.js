@@ -23,25 +23,25 @@ class SearchOnePokemonForm extends Component {
       >
         <input
           type="text"
+          className="mx-2"
           ref={this.formInput}
           required
           placeholder="Enter name"
           defaultValue="bulbasaur"
           id="pokemon-name-input"
         />
-        <button type="submit">Find it!</button>
-        <label>
-          Keep previous searches
+        <button className="green-rounded-box mx-2" type="submit">
+          Find it!
+        </button>
+        <label className="green-rounded-box chekbox-no-check mx-2">
           <input
             type="checkbox"
             ref={this.keepSearches}
             name="keepSearches"
             id="keep-searches"
           />
+          <span>Keep previous searches</span>
         </label>
-        <button type="button" onClick={this.props.removePokemons}>
-          Remove pokemons
-        </button>
       </form>
     );
   }

@@ -96,23 +96,26 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App container my-4 p-3">
-        <SearchOnePokemonForm
-          fetchItemIntoState={this.fetchItemIntoState}
-          removePokemons={this.removePokemons}
-        />
+      <div className="App container mb-5 p-3">
+        <h1>Search for specific pokemon by name</h1>
+        <SearchOnePokemonForm fetchItemIntoState={this.fetchItemIntoState} />
+        <h1>Search Pokepedia</h1>
         <SearchMultiplePokemonsForm
           fetchItemIntoState={this.fetchItemIntoState}
           allPokemons={this.state.allPokemons}
+          removePokemons={this.removePokemons}
         />
         <div className="waiting-for-list">
-          <p className="d-inline-block m-1">Waiting for data about:</p>
+          <p className="d-inline-block font-weight-bold mx-2 my-3">
+            Waiting for data about:
+          </p>
           {Object.keys(this.state.waitingForDataAbout).map(key => (
-            <div className="waiting-for-item d-inline-block m-1">
+            <div className="waiting-for-item green-rounded-box d-inline-block m-1">
               {this.state.waitingForDataAbout[key]}
             </div>
           ))}
         </div>
+        <h1>Results</h1>
         <div className="pokemons-list">
           {Object.keys(this.state.listedPokemons).map(key => (
             <Tile

@@ -61,8 +61,10 @@ class SearchMultiplePokemonsForm extends Component {
           className="search-pokemons-from-scope-form"
           onSubmit={this.listPokemonsFromScope}
         >
+          <p className="font-weight-bold">Set scope start and range: </p>
           <input
             type="range"
+            className="range-input"
             name="startValue"
             ref={this.rangeStartInput}
             min="0"
@@ -71,8 +73,15 @@ class SearchMultiplePokemonsForm extends Component {
             defaultValue="0"
             onChange={this.handleChange}
           />
+          <p className="scope-display d-inline-block mx-2">
+            <span>
+              <span>{this.state.startValue}</span>-
+              <span>{+this.state.startValue + +this.state.rangeValue}</span>
+            </span>
+          </p>
           <input
             type="number"
+            className="mx-2"
             name="rangeValue"
             ref={this.amountInput}
             min="0"
@@ -80,12 +89,17 @@ class SearchMultiplePokemonsForm extends Component {
             defaultValue="1"
             onChange={this.handleChange}
           />
-          <button type="submit">Search for pokemons</button>
+          <button className="green-rounded-box mx-2" type="submit">
+            Search for pokemons
+          </button>
         </form>
-        <p>
-          <span>{this.state.startValue}</span>-
-          <span>{+this.state.startValue + +this.state.rangeValue}</span>
-        </p>
+        <button
+          className="green-rounded-box remove-pokemons-btn mx-2 my-2"
+          type="button"
+          onClick={this.props.removePokemons}
+        >
+          Remove pokemons from the table
+        </button>
       </React.Fragment>
     );
   }

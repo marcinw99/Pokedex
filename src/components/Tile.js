@@ -10,13 +10,13 @@ class Tile extends Component {
     };
     return (
       <div
-        className="tile"
-        style={photoCSS}
+        className="tile d-inline-block m-2"
         onClick={() => {
           this.props.redirectToPokemonInfo(this);
         }}
       >
-        <p>{name}</p>
+        <div style={photoCSS} />
+        <p className="font-weight-bold text-center">{name}</p>
       </div>
     );
   }
