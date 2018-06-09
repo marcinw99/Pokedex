@@ -5,12 +5,8 @@ import SearchMultiplePokemonsForm from "./SearchMultiplePokemonsForm";
 
 class App extends Component {
   state = {
-    pokemons: [],
-    response: "noRequests",
-    searchScope: {
-      limit: 10,
-      offset: 100
-    }
+    listedPokemons: [],
+    allPokemons: []
   };
 
   componentDidMount() {
@@ -23,6 +19,19 @@ class App extends Component {
       cache: true
     };
     this.P = new Pokedex.Pokedex(options);
+    // Load names of all available pokemons into state
+    this.P.getPokemonsList().then(
+      result => {
+        this.setState({
+          allPokemons: result.results
+        });
+      },
+      eror => {
+        console.log(
+          "Error downloading list of pokemons, application may not work properly :("
+        );
+      }
+    );
   }
 
   fetchItemIntoState = (name, keepSearches) => {
@@ -30,16 +39,16 @@ class App extends Component {
       result => {
         if (keepSearches === false) {
           this.setState({
-            pokemons: [result]
+            listedPokemons: [result]
           });
         } else {
           // 1. Copy current state
-          const pokemons = this.state.pokemons;
+          const pokemons = this.state.listedPokemons;
           // 2. Add pokemon to a state
           pokemons.push(result);
           // 3. Set state
           this.setState({
-            pokemons: pokemons
+            listedPokemons: pokemons
           });
         }
       },
@@ -54,59 +63,29 @@ class App extends Component {
     this.props.history.push(`/pokemon/${pokemon}`);
   };
 
-  listPokemonsFromScope = event => {
-    // Prevent default
-    event.preventDefault();
-    // remove previous pokemons
+  removePokemons = () => {
     this.setState({
-      pokemons: []
+      listedPokemons: []
     });
-    this.P.getPokemonsList(this.state.searchScope).then(
-      result => {
-        const names = Object.keys(result.results).map(key => {
-          return result.results[key].name;
-        });
-        names.forEach(name => {
-          this.P.getPokemonByName(name).then(
-            result => {
-              // 1. Get a copy of state
-              const pokemons = this.state.pokemons;
-              // 2. Push new pokemon
-              pokemons.push(result);
-              // 3. Update state
-              this.setState({
-                pokemons
-              });
-            },
-            error => {
-              console.log(
-                "Something went wrong when downloading pokemons from given scope"
-              );
-            }
-          );
-        });
-      },
-      error => {
-        console.log(
-          "Something went wrong when displaying pokemons from given scope"
-        );
-      }
-    );
   };
 
   render() {
     return (
       <div className="App container my-4 p-3">
-        <SearchOnePokemonForm fetchItemIntoState={this.fetchItemIntoState} />
+        <SearchOnePokemonForm
+          fetchItemIntoState={this.fetchItemIntoState}
+          removePokemons={this.removePokemons}
+        />
         <SearchMultiplePokemonsForm
-          listPokemonsFromScope={this.listPokemonsFromScope}
+          fetchItemIntoState={this.fetchItemIntoState}
+          allPokemons={this.state.allPokemons}
         />
         <div className="pokemons-list">
-          {Object.keys(this.state.pokemons).map(key => (
+          {Object.keys(this.state.listedPokemons).map(key => (
             <Tile
               key={key}
               redirectToPokemonInfo={this.redirectToPokemonInfo}
-              pokemon={this.state.pokemons[key]}
+              pokemon={this.state.listedPokemons[key]}
             />
           ))}
         </div>

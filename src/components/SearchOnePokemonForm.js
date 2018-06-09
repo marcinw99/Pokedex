@@ -39,6 +39,9 @@ class SearchOnePokemonForm extends Component {
             id="keep-searches"
           />
         </label>
+        <button type="button" onClick={this.props.removePokemons}>
+          Remove pokemons
+        </button>
       </form>
     );
   }
