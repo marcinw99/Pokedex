@@ -8469,19 +8469,19 @@ body {
   background-position: center;
 }
 
-.App {
-  background: linear-gradient(30deg, #ffab00, #ffcd05);
-  border-radius: 15px;
-  color: #fff8e1;
-  font-size: 1.2rem;
-}
-
-.App .green-rounded-box {
+.green-rounded-box {
   background: #fff8e1;
   border: 2px solid #64dd17;
   color: #64dd17;
   border-radius: 10px;
   padding: 5px 12px;
+}
+
+.App {
+  background: linear-gradient(30deg, #ffab00, #ffcd05);
+  border-radius: 15px;
+  color: #fff8e1;
+  font-size: 1.2rem;
 }
 
 .App button:hover {
@@ -8635,6 +8635,17 @@ footer {
   border-radius: 15px;
 }
 
+.all-pokemons-list {
+  background: linear-gradient(30deg, #ffab00, #ffcd05);
+  border-radius: 15px;
+}
+
+.all-pokemons-list div:hover {
+  background: #64dd17;
+  color: #fff8e1;
+  transition: all 0.4s;
+}
+
 @media (max-width: 767.98px) {
   #logo {
     width: 100%;
@@ -8648,7 +8659,8 @@ footer {
   .App .remove-pokemons-btn {
     font-size: 1.2rem;
   }
-  .Pokemon {
+  .Pokemon,
+  .all-pokemons-list {
     border-radius: 0;
   }
 }

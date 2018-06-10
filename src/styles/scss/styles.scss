@@ -22,18 +22,20 @@ body {
   background-position: center;
 }
 
+.green-rounded-box {
+  background: $bright;
+  border: 2px solid $green;
+  color: $green;
+  border-radius: 10px;
+  padding: 5px 12px;
+}
+
 .App {
   background: linear-gradient(30deg, #ffab00, #ffcd05);
   border-radius: 15px;
   color: $bright;
   font-size: 1.2rem;
-  .green-rounded-box {
-    background: $bright;
-    border: 2px solid $green;
-    color: $green;
-    border-radius: 10px;
-    padding: 5px 12px;
-  }
+
   button:hover {
     background: $green;
     color: $bright;
@@ -170,6 +172,18 @@ footer {
   }
 }
 
+// styling all pokemons list
+
+.all-pokemons-list {
+  background: linear-gradient(30deg, #ffab00, #ffcd05);
+  border-radius: 15px;
+  div:hover {
+    background: $green;
+    color: $bright;
+    transition: all 0.4s;
+  }
+}
+
 @include media-breakpoint-down(sm) {
   #logo {
     width: 100%;
@@ -185,7 +199,8 @@ footer {
     }
   }
 
-  .Pokemon {
+  .Pokemon,
+  .all-pokemons-list {
     border-radius: 0;
   }
 }

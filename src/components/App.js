@@ -98,6 +98,10 @@ class App extends Component {
     this.props.history.push(`/pokemon/${pokemon}`);
   };
 
+  redirectToAllPokemonsList = () => {
+    this.props.history.push(`/allpokemons`);
+  };
+
   removePokemons = () => {
     this.setState({
       listedPokemons: []
@@ -107,6 +111,12 @@ class App extends Component {
   render() {
     return (
       <div className="App container mb-5 mt-1 p-3">
+        <button
+          className="green-rounded-box"
+          onClick={this.redirectToAllPokemonsList}
+        >
+          View all pokemons names
+        </button>
         <h1 className="mx-2">Search for specific pokemon by name</h1>
         <SearchOnePokemonForm fetchItemIntoState={this.fetchItemIntoState} />
         <h1 className="mx-2 mt-2">Search Pokepedia</h1>
