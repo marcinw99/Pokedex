@@ -54,6 +54,11 @@ class Pokemon extends Component {
         );
       case "success":
         const name = this.state.pokemon.name,
+          background = this.state.pokemon.sprites.front_default,
+          photoCSS = {
+            background: `url(${background})`,
+            backgroundSize: "contain"
+          },
           height = this.state.pokemon.height,
           weight = this.state.pokemon.weight,
           base_exp = this.state.pokemon.base_experience,
@@ -66,11 +71,11 @@ class Pokemon extends Component {
           stats = this.state.pokemon.stats,
           moves = this.state.pokemon.moves;
         return (
-          <div className="pokemon container">
+          <div className="Pokemon container mb-5 py-3 px-4">
             <div className="row">
-              <div className="col-6 avatar" />
-              <div className="col-6 basic-info">
-                <p>{name}</p>
+              <div className="col-6 avatar" style={photoCSS} />
+              <div className="col-6 basic-info p-2">
+                <h1>{name}</h1>
                 <p>{types}</p>
                 <div>
                   <p>Height: {height}</p>
@@ -88,12 +93,16 @@ class Pokemon extends Component {
             <div className="stats">
               {stats.map(key => (
                 <div key={key.stat.url}>
-                  <p key={key.stat.name}>{key.stat.name}</p>
-                  <p key={key.base_stat}>{key.base_stat}</p>
+                  <span>
+                    <p key={key.stat.name}>{key.stat.name}</p>
+                    <br />
+                    <p key={key.base_stat}>{key.base_stat}</p>
+                  </span>
                 </div>
               ))}
             </div>
-            <div className="moves">
+            <h1>Moves</h1>
+            <div className="moves p-3">
               {moves.map(key => (
                 <span key={key.move.name}>{key.move.name}, </span>
               ))}
