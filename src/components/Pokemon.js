@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Pokedex } from "../pokeapi-js-wrapper/index";
 
 class Pokemon extends Component {
   state = {
@@ -26,14 +27,13 @@ class Pokemon extends Component {
     // 1. Get pokemon's name from props
     const name = this.props.match.params.pokemonName;
     // 2. Set up Pokeapi wrapper
-    const Pokedex = require("pokeapi-js-wrapper");
     const options = {
       protocol: "http",
       hostName: "pokeapi.salestock.net",
       versionPath: "/api/v2/",
       cache: true
     };
-    this.P = new Pokedex.Pokedex(options);
+    this.P = new Pokedex(options);
     // 3. Fetch Pokemon's data
     this.fetchPokemonDataIntoState(name);
   }

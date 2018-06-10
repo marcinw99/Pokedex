@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Pokedex } from "../pokeapi-js-wrapper/index";
 
 class AllPokemons extends Component {
   state = {
@@ -6,7 +7,6 @@ class AllPokemons extends Component {
   };
 
   componentDidMount() {
-    const Pokedex = require("pokeapi-js-wrapper");
     const options = {
       protocol: "http",
       hostName: "pokeapi.salestock.net",
@@ -14,7 +14,7 @@ class AllPokemons extends Component {
       timeout: 120 * 1000,
       cache: true
     };
-    this.P = new Pokedex.Pokedex(options);
+    this.P = new Pokedex(options);
     // Load divs - links with pokemons names into state
     this.P.getPokemonsList().then(
       result => {

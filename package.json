@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "parallelshell \"npm run sass:watch\" \"react-scripts start\" ",
-    "build": "npm sass:build && react-scripts build",
+    "build": "react-scripts build",
     "eject": "react-scripts eject",
     "sass:watch": "node-sass --output-style expanded --watch --source-map true -o ./src/styles/css/ ./src/styles/scss/",
     "sass:build": "node-sass --output-style expanded --source-map true -o ./src/styles/css/ ./src/styles/scss/",

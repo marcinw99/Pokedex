@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Tile from "./Tile";
 import SearchOnePokemonForm from "./SearchOnePokemonForm";
 import SearchMultiplePokemonsForm from "./SearchMultiplePokemonsForm";
+import { Pokedex } from "../pokeapi-js-wrapper/index";
 
 class App extends Component {
   state = {
@@ -11,7 +12,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const Pokedex = require("pokeapi-js-wrapper");
     const options = {
       protocol: "http",
       hostName: "pokeapi.salestock.net",
@@ -19,7 +19,7 @@ class App extends Component {
       timeout: 120 * 1000,
       cache: true
     };
-    this.P = new Pokedex.Pokedex(options);
+    this.P = new Pokedex(options);
     // Load names of all available pokemons into state
     this.P.getPokemonsList().then(
       result => {
