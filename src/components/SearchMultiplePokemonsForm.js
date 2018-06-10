@@ -61,7 +61,9 @@ class SearchMultiplePokemonsForm extends Component {
           className="search-pokemons-from-scope-form"
           onSubmit={this.listPokemonsFromScope}
         >
-          <p className="font-weight-bold">Set scope start and range: </p>
+          <p className="font-weight-bold mx-2 my-1">
+            Set scope start and range:{" "}
+          </p>
           <input
             type="range"
             className="range-input"
@@ -73,7 +75,7 @@ class SearchMultiplePokemonsForm extends Component {
             defaultValue="0"
             onChange={this.handleChange}
           />
-          <p className="scope-display d-inline-block mx-2">
+          <p className="scope-display d-inline-block mx-2 my-1">
             <span>
               <span>{this.state.startValue}</span>-
               <span>{+this.state.startValue + +this.state.rangeValue}</span>
@@ -89,7 +91,7 @@ class SearchMultiplePokemonsForm extends Component {
             defaultValue="1"
             onChange={this.handleChange}
           />
-          <button className="green-rounded-box mx-2" type="submit">
+          <button className="green-rounded-box mx-2 my-1" type="submit">
             Search for pokemons
           </button>
         </form>

@@ -106,10 +106,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App container mb-5 p-3">
-        <h1>Search for specific pokemon by name</h1>
+      <div className="App container mb-5 mt-1 p-3">
+        <h1 className="mx-2">Search for specific pokemon by name</h1>
         <SearchOnePokemonForm fetchItemIntoState={this.fetchItemIntoState} />
-        <h1>Search Pokepedia</h1>
+        <h1 className="mx-2 mt-2">Search Pokepedia</h1>
         <SearchMultiplePokemonsForm
           fetchItemIntoState={this.fetchItemIntoState}
           allPokemons={this.state.allPokemons}

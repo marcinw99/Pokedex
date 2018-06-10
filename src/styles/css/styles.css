@@ -8462,10 +8462,11 @@ body {
 #logo {
   width: 50%;
   max-width: 400px;
-  height: 200px;
+  height: 100px;
   background: url("../images/logo.png");
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center;
 }
 
 .App {
@@ -8529,6 +8530,8 @@ body {
 }
 
 .App .pokemons-list {
+  text-align: center;
+  padding-top: 10px;
   border-radius: 15px;
   min-height: 30vh;
   background: #fff8e1;
@@ -8576,6 +8579,21 @@ footer {
 
 .pokemon {
   background: linear-gradient(30deg, #ffab00, #ffcd05);
+}
+
+@media (max-width: 767.98px) {
+  #logo {
+    width: 100%;
+  }
+  .App {
+    border-radius: 0;
+  }
+  .App h1 {
+    font-size: 1.5rem;
+  }
+  .App .remove-pokemons-btn {
+    font-size: 1.2rem;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

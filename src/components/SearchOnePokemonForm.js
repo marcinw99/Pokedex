@@ -8,7 +8,7 @@ class SearchOnePokemonForm extends Component {
     // Stop the form from submitting
     event.preventDefault();
     // Get value from input
-    const pokemonName = this.formInput.current.value;
+    const pokemonName = this.formInput.current.value.toLowerCase();
     // Check if should keep previous searches
     const keepSearches = this.keepSearches.current.checked;
     // Fetch Pokemon into state
@@ -23,17 +23,17 @@ class SearchOnePokemonForm extends Component {
       >
         <input
           type="text"
-          className="mx-2"
+          className="mx-2 my-1"
           ref={this.formInput}
           required
           placeholder="Enter name"
           defaultValue="bulbasaur"
           id="pokemon-name-input"
         />
-        <button className="green-rounded-box mx-2" type="submit">
+        <button className="green-rounded-box mx-2 my-1" type="submit">
           Find it!
         </button>
-        <label className="green-rounded-box chekbox-no-check mx-2">
+        <label className="green-rounded-box chekbox-no-check mx-2 my-1">
           <input
             type="checkbox"
             ref={this.keepSearches}
