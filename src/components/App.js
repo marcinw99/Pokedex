@@ -35,6 +35,25 @@ class App extends Component {
     );
   }
 
+  addItemToWaitingForList = name => {
+    const waitingForDataAbout = this.state.waitingForDataAbout;
+    if (waitingForDataAbout.indexOf(name) === -1) {
+      waitingForDataAbout.push(name);
+    }
+    this.setState({
+      waitingForDataAbout
+    });
+  };
+
+  removeItemFromWaitingForList = name => {
+    const waitingForDataAbout = this.state.waitingForDataAbout;
+    const indexOfItem = waitingForDataAbout.indexOf(name);
+    waitingForDataAbout.splice(indexOfItem, 1);
+    this.setState({
+      waitingForDataAbout
+    });
+  };
+
   fetchItemIntoState = (name, keepSearches) => {
     // Don't make more then 12 requests at one time
     // If there is already a request for that item don't send more
@@ -45,13 +64,8 @@ class App extends Component {
       return false;
     }
     // Update info about current ajax requests for pokemons
-    const waitingForDataAbout = this.state.waitingForDataAbout;
-    if (waitingForDataAbout.indexOf(name) === -1) {
-      waitingForDataAbout.push(name);
-    }
-    this.setState({
-      waitingForDataAbout
-    });
+    this.addItemToWaitingForList(name);
+
     this.P.getPokemonByName(name).then(
       result => {
         if (keepSearches === false) {
@@ -69,14 +83,11 @@ class App extends Component {
           });
         }
         // Update info about current ajax requests for pokemons
-        const waitingForDataAbout = this.state.waitingForDataAbout;
-        const indexOfItem = waitingForDataAbout.indexOf(name);
-        waitingForDataAbout.splice(indexOfItem, 1);
-        this.setState({
-          waitingForDataAbout
-        });
+        this.removeItemFromWaitingForList(name);
       },
       error => {
+        this.removeItemFromWaitingForList(name);
+        alert(`Could not find find ${name} in the database :(`);
         return null;
       }
     );
