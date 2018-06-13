@@ -50,6 +50,11 @@ I would implement those features if I had more time:
     
     • Above features with registration would be handled by Firebase
 
+What I would do another way:
+
+    • I would use ‘Link’ from react-router instead of writing my own functions to change path to e.g. /pokemon/pikachu
+
+
 Encountered problems:
 
     • Problem with compiling SCSS files to CSS on file change (Node-sass) with Visual Studio Code
