@@ -100,6 +100,4 @@ Encountered problems:
         
         ◦ Solution: Import pokeapi-js-wrapper code to App/src and treat it as application code
 
-Live - http://nodetest.ct8.pl/ (not HTTPS)
-
 Github repositorium - https://github.com/marcinw99/Pokedex
